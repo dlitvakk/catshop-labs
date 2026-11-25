@@ -1,0 +1,1 @@
+ghcr.io/dlitvakk/catshop-lab-02@sha256:ae9d2776b25bcd42c5193c57d7b4bcdad8806a8445c7081b79cde2ac80edcb87
