@@ -7,17 +7,17 @@ import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+import app 
+
 
 @pytest.fixture
 def app_module(tmp_path, monkeypatch):
     monkeypatch.setenv("COUNTER_FILE", str(tmp_path / "data" / "visits.txt"))
     monkeypatch.delenv("DATABASE_URL", raising=False)
     monkeypatch.setenv("PARTNER_URL", "http://partner.invalid")
-    import app as app_module
-
-    importlib.reload(app_module)
-    app_module.app.config["TESTING"] = True
-    return app_module
+    importlib.reload(app)
+    app.app.config["TESTING"] = True
+    return app
 
 
 @pytest.fixture
