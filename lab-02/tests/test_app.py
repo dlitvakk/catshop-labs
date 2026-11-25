@@ -13,10 +13,11 @@ def app_module(tmp_path, monkeypatch):
     monkeypatch.setenv("COUNTER_FILE", str(tmp_path / "data" / "visits.txt"))
     monkeypatch.delenv("DATABASE_URL", raising=False)
     monkeypatch.setenv("PARTNER_URL", "http://partner.invalid")
-    sys.modules.pop("app", None)
-    module = importlib.import_module("app")
-    module.app.config["TESTING"] = True
-    return module
+    import app as app_module
+
+    importlib.reload(app_module)
+    app_module.app.config["TESTING"] = True
+    return app_module
 
 
 @pytest.fixture
